@@ -476,7 +476,7 @@ PlayerSettings:
   Game_Performance_ServiceEnabled::Game_Performance_ServiceEnabled: False
   Hub_ServiceEnabled::Hub_ServiceEnabled: False
   Purchasing_ServiceEnabled::Purchasing_ServiceEnabled: False
-  UNet_ServiceEnabled::UNet_ServiceEnabled: False
+  UNet_ServiceEnabled::UNet_ServiceEnabled: True
   Unity_Ads_ServiceEnabled::Unity_Ads_ServiceEnabled: False
   vectorPropertyNames:
   - Android::VR::enabledDevices
@@ -516,7 +516,7 @@ PlayerSettings:
   XboxOne::VR::enabledDevices: []
   iOS::VR::enabledDevices: []
   tvOS::VR::enabledDevices: []
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  cloudProjectId: b56ad240-9b5f-437b-834f-80255545b7ad
+  projectName: DestructionGame (1)
+  organizationId: sorzi-bambi
   cloudEnabled: 0
