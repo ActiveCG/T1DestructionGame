@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager {
 
 	private static GameManager _instance;
 
-	private static string GAME_SCENE = "GameScene";
+	private static string[] GAME_SCENES = {"GameScene","GameScene2"};
 
 	private GameObject _player;
 
@@ -27,6 +28,10 @@ public class GameManager {
 	}
 
 	//scene management
+	public void StartNewLevel(){
+		SceneManager.LoadScene (GAME_SCENES[0]); //UPDATE FOR MORE LEVELS
+		Time.timeScale = 1;
+	}
 
 	//delegates
 
