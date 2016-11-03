@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: CelMaterial
+  m_Name: CelMaterial 1
   m_Shader: {fileID: 4800000, guid: 7da0f810a75686e4fa74ecec618b5cc6, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -81,10 +81,10 @@ Material:
       second: 1
     - first:
         name: _DiffuseThreshold
-      second: 0.464
+      second: 0.137
     - first:
         name: _DiffuseThresholdMid
-      second: 0.357
+      second: 0.467
     - first:
         name: _DstBlend
       second: 0
@@ -136,19 +136,19 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.9264706, g: 0.54662865, b: 0.4700476, a: 1}
+      second: {r: 0.91372555, g: 0.6039216, b: 0.32156864, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _OutlineColor
-      second: {r: 0.7294118, g: 0.37254903, b: 0.2784314, a: 0}
+      second: {r: 0, g: 0, b: 0, a: 0}
     - first:
         name: _SpecColor
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _UnlitColor
-      second: {r: 0.909804, g: 0.353, b: 0.294, a: 1}
+      second: {r: 0.5182202, g: 0.5201395, b: 0.52205884, a: 1}
     - first:
         name: _UnlitColorMid
-      second: {r: 0.7294118, g: 0.37254903, b: 0.2784314, a: 1}
+      second: {r: 0.4431373, g: 0.2901961, b: 0.16470589, a: 1}
