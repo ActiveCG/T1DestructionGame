@@ -54,4 +54,8 @@ public class LevelManager : MonoBehaviour {
 
 		guideText.gameObject.SetActive (true);
 	}
+
+	public void GoToStore(){
+		GameManager.instance.GoToStore ();
+	}
 }

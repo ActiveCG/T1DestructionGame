@@ -9,6 +9,8 @@ public class GameManager {
 	private LevelManager _levelManager;
 	private static string[] GAME_SCENES = {"GameScene1","GameScene2"};
 
+	private int currentLevel = 1;
+
 	public int score = 0;
 
 	//getters:
@@ -40,6 +42,18 @@ public class GameManager {
 	public void StartNewLevel(){
 		_instance = null;
 		SceneManager.LoadScene (GAME_SCENES[0]); //UPDATE FOR MORE LEVELS
+		Time.timeScale = 1;
+	}
+
+	public void GoToStore(){
+		_instance = null;
+		SceneManager.LoadScene ("Shop");
+		Time.timeScale = 1;
+	}
+
+	public void BackToGame(){
+		_instance = null;
+		SceneManager.LoadScene (GAME_SCENES[currentLevel-1]); //UPDATE FOR MORE LEVELS
 		Time.timeScale = 1;
 	}
 

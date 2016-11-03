@@ -16,7 +16,7 @@ public class PlayerStates : MonoBehaviour {
 
 
 	void Awake(){
-		DontDestroyOnLoad (gameObject);
+		//DontDestroyOnLoad (gameObject);
 		//update timer
 		timerText = GameObject.Find ("TimeLeftText").GetComponent<Text> ();
 		timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;

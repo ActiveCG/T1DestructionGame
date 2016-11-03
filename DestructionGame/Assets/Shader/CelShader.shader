@@ -7,6 +7,9 @@ Shader "CelShader" {
       _UnlitColor ("Unlit Diffuse Color", Color) = (0.5,0.5,0.5,1) 
       _DiffuseThreshold ("Threshold for Diffuse Colors", Range(0,1)) 
          = 0.1 
+       _UnlitColorMid ("Unlit Diffuse ColorMid", Color) = (0.5,0.5,0.5,1) 
+       _DiffuseThresholdMid ("Threshold Diffuse ColorsMid", Range(0,1)) 
+         = 0.1 
       _OutlineColor ("Outline Color", Color) = (0,0,0,1)
       _LitOutlineThickness ("Lit Outline Thickness", Range(0,1)) = 0.1
       _UnlitOutlineThickness ("Unlit Outline Thickness", Range(0,1)) 
@@ -32,6 +35,8 @@ Shader "CelShader" {
          uniform float4 _Color; 
          uniform float4 _UnlitColor;
          uniform float _DiffuseThreshold;
+         uniform float4 _UnlitColorMid;
+         uniform float _DiffuseThresholdMid;
          uniform float4 _OutlineColor;
          uniform float _LitOutlineThickness;
          uniform float _UnlitOutlineThickness;
@@ -84,17 +89,21 @@ Shader "CelShader" {
                attenuation = 1.0 / distance; // linear attenuation 
                lightDirection = normalize(vertexToLightSource);
             }
-  
-            // default: unlit 
-            float3 fragmentColor = _UnlitColor.rgb; 
+
+               // default: unlit 
+           float3 fragmentColor = _UnlitColor.rgb; 
  
             // low priority: diffuse illumination
-            if (attenuation 
-               * max(0.0, dot(normalDirection, lightDirection)) 
-               >= _DiffuseThreshold)
+            if (attenuation  * max(0.0, dot(normalDirection, lightDirection)) <= _DiffuseThresholdMid)
+	        {
+	              fragmentColor = _UnlitColorMid.rgb; 
+	        }
+            else if (attenuation  * max(0.0, dot(normalDirection, lightDirection)) >= _DiffuseThreshold)
             {
                fragmentColor = _LightColor0.rgb * _Color.rgb; 
             }
+
+         
  
             // higher priority: outline
             if (dot(viewDirection, normalDirection) 
