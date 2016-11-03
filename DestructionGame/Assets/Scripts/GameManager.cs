@@ -52,7 +52,12 @@ public class GameManager {
 	}
 
 	public delegate void GameAction();
+	public event GameAction OnTimerStart;
 	public event GameAction OnTimerOut;
+	public void timerStart() {
+		if (OnTimerStart != null)
+			OnTimerStart ();
+	}
 	public void timerOut() {
 		if (OnTimerOut != null)
 			OnTimerOut ();

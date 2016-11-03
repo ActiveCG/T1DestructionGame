@@ -14,17 +14,25 @@ public class LevelManager : MonoBehaviour {
 
 	int score = 0;
 	Text scoreText;
+	Text minScoreText;
+	Text guideText;
 
 	void Awake(){
 		GameManager.instance.OnObjectDestructed += IncreaseScore;
+		GameManager.instance.OnTimerStart += StartLevel;
 		GameManager.instance.OnTimerOut += ShowEnding;
 
 		scoreText = GameObject.Find ("ScoreText").GetComponent<Text> ();
 		scoreText.text = "Score: " + score;
+		minScoreText = GameObject.Find ("MinScoreText").GetComponent<Text> ();
+		minScoreText.text = "Reach " + scoreToCompleteLevel + " to Win";
+		guideText = GameObject.Find ("GuideText").GetComponent<Text> ();
+		guideText.text = "Press R to start the level and hit objects";
 	}
 
 	void OnDisable(){
 		GameManager.instance.OnObjectDestructed -= IncreaseScore;
+		GameManager.instance.OnTimerStart -= StartLevel;
 		GameManager.instance.OnTimerOut -= ShowEnding;
 	}
 
@@ -34,10 +42,16 @@ public class LevelManager : MonoBehaviour {
 		GameManager.instance.score = score;
 	}
 
+	private void StartLevel(){
+		guideText.gameObject.SetActive (false);
+	}
+
 	private void ShowEnding(){
 		if (score >= scoreToCompleteLevel)
-			Debug.Log ("Level completed");
+			guideText.text = "Level completed!";
 		else
-			Debug.Log ("Game over. Try again");
+			guideText.text = "Game over";
+
+		guideText.gameObject.SetActive (true);
 	}
 }

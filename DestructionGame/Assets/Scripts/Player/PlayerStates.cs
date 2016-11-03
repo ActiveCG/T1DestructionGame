@@ -48,6 +48,7 @@ public class PlayerStates : MonoBehaviour {
 			if (Input.GetKey (KeyCode.R)) {
 				timeLeftInLevel = 10f;
 				state = PlayerState.IDLE;
+				GameManager.instance.timerStart ();
 			}
 			break;
 
