@@ -10,7 +10,7 @@ public class CameraController5 : MonoBehaviour {
 
     [Tooltip("The rotation speed of the camera")]
     [SerializeField]
-    private int rotationSpeed = 3;
+    private float smooth = 3f;
     [Tooltip("Offset in the Y")]
     [SerializeField]
     private int cameraHeight = 5;
@@ -18,58 +18,31 @@ public class CameraController5 : MonoBehaviour {
     [SerializeField]
     private int cameraLength = 8;
 
-    private int control = 0;
-
-    private float rotationAngle;
-    private float currentRotationAngle;
+    private bool move;
 
     private GameObject player;
     private GameObject tempTrans;
 
     private RaycastHit hit;
 
-    private Quaternion currentRotation;
-
-
+    private float offsetZ;
 
     void Start ()
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
-	
-	void LateUpdate ()
+    void LateUpdate()
     {
-        rotationAngle = player.transform.eulerAngles.y;
-
-        currentRotationAngle = transform.eulerAngles.y;
-
-        currentRotationAngle = Mathf.LerpAngle(currentRotationAngle, rotationAngle, Time.deltaTime * rotationSpeed);
-
-        currentRotation = Quaternion.Euler(0, currentRotationAngle, 0);
-
-        transform.position = player.transform.position;
-        transform.position -= currentRotation * Vector3.forward * cameraLength;
-
-        transform.position = new Vector3(transform.position.x, cameraHeight, transform.position.z); //Lerp this
-        transform.LookAt(player.transform.position + new Vector3(0, 3, 0));
+        offsetZ = cameraLength;
+        Vector3 targetCamPos = player.transform.position + new Vector3(0, cameraHeight, -offsetZ);
+        transform.position = Vector3.Lerp(transform.position, targetCamPos, Time.deltaTime * smooth);
+        Debug.Log(offsetZ);
     }
     void FixedUpdate()
     {
-        Physics.Linecast(transform.position, player.transform.position, out hit);
-        Debug.DrawLine(transform.position, player.transform.position);
-        if (hit.transform != null)
+        if (Physics.Linecast(player.transform.position, transform.position, out hit))
         {
-            if (hit.transform.gameObject != player)
-            {
-                tempTrans = hit.transform.gameObject;
-                print(tempTrans);
-                hit.transform.GetComponent<MeshRenderer>().enabled = false;
-            }
-            else if (hit.transform.gameObject == player && tempTrans != null)
-            {
-                print(tempTrans);
-                tempTrans.GetComponent<MeshRenderer>().enabled = true;
-            }
+            offsetZ = 0;
         }
     }
 }
